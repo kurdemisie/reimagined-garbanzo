@@ -23,7 +23,7 @@ struct ReceipeDetailView: View {
                 
                 //MARK: Ingredients
                 VStack(alignment: .leading) {
-                    Text("Ingredients")
+                    Text("Ingredientes")
                         .font(.headline)
                         .padding([.bottom, .top], 5)
                     
