@@ -26,17 +26,27 @@ class DataService {
             return [Recipe]()
         }
         
+        //Create a url object
         let url = URL(fileURLWithPath: pathString!)
         
         do{
+            //Create a data object
             let data = try Data(contentsOf: url)
             
+            //Decode the data with the json decoder
             let decoder = JSONDecoder()
+            
             do {
                 let recipesData = try decoder.decode([Recipe].self, from: data)
                 
+                //Add unique IDs
                 for r in recipesData {
                     r.id = UUID()
+                    
+                    //Add IDs to recipe ingredients
+                    for i in r.ingredients {
+                        i.id = UUID()
+                    }
                 }
                return recipesData
             }
