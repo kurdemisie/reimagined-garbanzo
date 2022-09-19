@@ -22,16 +22,27 @@ struct ReceipeDetailView: View {
                     .resizable()
                     .scaledToFill()
                 
+                //MARK: Recipe title
+                Text(recipe.name)
+                    .bold()
+                    .padding(.top, 20)
+                    .padding(.leading)
+                    .font(.largeTitle)
+                
                 //MARK: Serving size picker
-                Text("Select your serving size: ")
-                Picker("", selection: $selectedServingSize) {
-                    Text("2").tag(2)
-                    Text("4").tag(4)
-                    Text("6").tag(6)
-                    Text("8").tag(8)
+                VStack(alignment: .leading) {
+                    Text("Select your serving size: ")
+                    Picker("", selection: $selectedServingSize) {
+                        Text("2").tag(2)
+                        Text("4").tag(4)
+                        Text("6").tag(6)
+                        Text("8").tag(8)
+                    }
+                    .pickerStyle(.segmented)
+                    .frame(width: 160)
                 }
-                .pickerStyle(.segmented)
-                .frame(width: 160)
+                .padding()
+                
                 
                 //MARK: Ingredients
                 VStack(alignment: .leading) {
@@ -62,7 +73,6 @@ struct ReceipeDetailView: View {
                 .padding(.horizontal)
             }
         }
-        .navigationBarTitle(recipe.name)
     }
 }
 
@@ -73,6 +83,6 @@ struct ReceipeDetailView_Previews: PreviewProvider {
         let model = RecipeModel()
         
         ReceipeDetailView(recipe: model.recipes[2])
-.previewInterfaceOrientation(.portraitUpsideDown)
+.previewInterfaceOrientation(.portrait)
     }
 }
